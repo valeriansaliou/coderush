@@ -1,1 +1,12 @@
-/* DOCUMENT STYLE HERE */
+#not_found h1,
+#not_found p {
+	text-align: center;
+}
+
+#not_found h1 {
+	margin-top: 35px;
+}
+
+#not_found p {
+	margin-top: 8px;
+}

@@ -20,6 +20,15 @@ $CURRENT_STATICS = array(
 			// Page
 			'page'	=> '*'
 		)
+	),
+	
+	// Legacy
+	'legacy' 	=> array(
+		// Stylesheets
+		'stylesheets'	=> array(
+			// Page
+			'page'	=> '*'
+		)
 	)
 );
 

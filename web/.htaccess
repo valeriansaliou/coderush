@@ -1,15 +1,7 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Add the following lines to Apache general configuration (for API proxy over SSL)
-    # SSLProxyEngine On
-    # SSLProxyCheckPeerCN Off
-    # SSLProxyCheckPeerExpire Off
-    
-    # Proxy to remote API server
-    RewriteRule ^api/(.*)? https://CodeRush.mobi/api/$1 [P]
-    
-    # Router engine
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php?q=$1 [QSA,L]
+	RewriteEngine On
+	
+	# Router engine
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ index.php?q=$1 [QSA,L]
 </IfModule>

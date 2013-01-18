@@ -2,23 +2,23 @@
 
 /*
  *	CodeRush
- *	App Statics (secured)
+ *	Home Statics (secured)
  */
 
-// Pod statics container
+// Home statics container
 $CURRENT_STATICS = array(
 	// Main
 	'main' 		=> array(
 		// Stylesheets
 		'stylesheets'	=> array(
-			// Pod
-			'pod'	=> '*'
+			// Home
+			'home'	=> '*'
 		),
 		
 		// JavaScripts
 		'javascripts'	=> array(
-			// Pod
-			'pod'	=> '*'
+			// Home
+			'home'	=> '*'
 		)
 	),
 	
@@ -26,8 +26,8 @@ $CURRENT_STATICS = array(
 	'legacy' 	=> array(
 		// Stylesheets
 		'stylesheets'	=> array(
-			// Pod
-			'pod'	=> '*'
+			// Home
+			'home'	=> '*'
 		)
 	)
 );

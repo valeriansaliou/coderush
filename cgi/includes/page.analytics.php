@@ -16,10 +16,12 @@
 	
 	<script type="text/javascript">
 		try {
-			var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+			//var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", -1);
 			
-			piwikTracker.trackPageView();
-			piwikTracker.enableLinkTracking();
+			/* PAGE TRACKER CODE IN FUNCTION BELOW (CHANGE -1 VALUE) */
+			
+			//piwikTracker.trackPageView();
+			//piwikTracker.enableLinkTracking();
 		} catch(err) {}
 	</script>
 <? } ?>
