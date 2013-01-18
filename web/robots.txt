@@ -1,0 +1,3 @@
+# CodeRush
+User-agent: *
+Allow: /

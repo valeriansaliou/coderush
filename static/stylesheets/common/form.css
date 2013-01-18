@@ -1,0 +1,57 @@
+input.placeholder,
+textarea.placeholder {
+	color: #b1b1b1 !important;
+}
+
+input.placeholder:focus,
+textarea.placeholder:focus {
+	color: #00d2ff !important;
+}
+
+input:placeholder {
+	color: #b1b1b1 !important;
+}
+
+input:focus:placeholder {
+	color: #00d2ff !important;
+}
+
+textarea:placeholder {
+	color: #b1b1b1 !important;
+}
+
+textarea:focus:placeholder {
+	color: #00d2ff !important;
+}
+
+input:-moz-placeholder {
+	color: #b1b1b1 !important;
+}
+
+input:focus:-moz-placeholder {
+	color: #00d2ff !important;
+}
+
+textarea:-moz-placeholder {
+	color: #b1b1b1 !important;
+}
+
+textarea:focus:-moz-placeholder {
+	color: #00d2ff !important;
+}
+
+input::-webkit-input-placeholder {
+	color: #b1b1b1 !important;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: #00d2ff !important;
+}
+
+textarea::-webkit-input-placeholder {
+	color: #b1b1b1 !important;
+}
+
+textarea:focus::-webkit-input-placeholder {
+	color: #00d2ff !important;
+}

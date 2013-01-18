@@ -1,0 +1,24 @@
+@font-face {
+	font-family: PT Sans;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/eot/ptsans.eot);
+}
+
+@font-face {
+	font-family: PT Sans;
+	font-style: italic;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/eot/ptsans_italic.eot);
+}
+
+@font-face {
+	font-family: PT Sans;
+	font-weight: bold;
+	src: url(/static/int/revision/fonts/eot/ptsans_bold.eot);
+}
+
+@font-face {
+	font-family: Iconic Stroke;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/eot/iconicstroke.eot);
+}

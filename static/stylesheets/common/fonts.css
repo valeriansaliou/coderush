@@ -1,0 +1,24 @@
+@font-face {
+	font-family: PT Sans;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/ttf/ptsans.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: PT Sans;
+	font-style: italic;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/ttf/ptsans_italic.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: PT Sans;
+	font-weight: bold;
+	src: url(/static/int/revision/fonts/ttf/ptsans_bold.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: Iconic Stroke;
+	font-weight: normal;
+	src: url(/static/int/revision/fonts/ttf/iconicstroke.ttf) format('truetype');
+}
