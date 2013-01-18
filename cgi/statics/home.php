@@ -1,7 +1,7 @@
 <?php
 
 /*
- *	AirDrive
+ *	CodeRush
  *	App Statics (secured)
  */
 

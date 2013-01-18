@@ -25,10 +25,10 @@ $CONTEXT_REVISION 	= strval($CONFIG_COMMON['meta']['revision']);
 
 // Route request
 if(!$CONTEXT_ROUTE[0])
-	include_once('../cgi/routes/hello.php');
+	include_once('../cgi/routes/home.php');
 else if(file_exists('../cgi/routes/'.$CONTEXT_ROUTE[0].'.php'))
 	include_once('../cgi/routes/'.$CONTEXT_ROUTE[0].'.php');
 else
-	include_once('../cgi/routes/pod.php');
+	include_once('../cgi/routes/not_found.php');
 
 ?>

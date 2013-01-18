@@ -1,7 +1,7 @@
 <?php
 
 /*
- *	AirDrive
+ *	CodeRush
  *	SQL Configuration (secured)
  */
 

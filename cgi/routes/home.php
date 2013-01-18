@@ -1,7 +1,7 @@
 <?php
 
 /*
- *	AirDrive
+ *	CodeRush
  *	Hello Page
  */
 
@@ -36,7 +36,7 @@ includeTranslation($CONTEXT_LANG, 'main', 'hello');
 <head>
 	<meta charset="utf-8" />
 	
-	<title><?php _e("AirDrive"); ?> - <?php _e("Wireless File Storage for Android"); ?></title>
+	<title><?php _e("CodeRush"); ?> - <?php _e("Wireless File Storage for Android"); ?></title>
   	<link rel="shortcut icon" href="/favicon.ico" />
   	
   	<link rel="stylesheet" href="/static/int/<?php _revision(); ?>/stylesheets/common.css">

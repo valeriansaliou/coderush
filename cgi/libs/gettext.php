@@ -22,7 +22,7 @@
 */
 
 /**
- * MODIFIED FOR AirDrive
+ * MODIFIED FOR CodeRush
  * Last revision: 10/11/10
  */
 

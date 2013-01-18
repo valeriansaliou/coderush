@@ -1,7 +1,7 @@
 <?php
 
 /*
- *	AirDrive
+ *	CodeRush
  *	Page Header
  */
 
@@ -38,7 +38,7 @@
 				<span class="inside">
 					<span class="icon" data-icon="&#57410;"></span>
 					<span class="divider"></span>
-					<span class="text"><?php _e("Get AirDrive"); ?></span>
+					<span class="text"><?php _e("Get CodeRush"); ?></span>
 				</span>
 			</a>
 		<?php } ?>

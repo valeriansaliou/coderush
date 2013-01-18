@@ -7,7 +7,7 @@
     # SSLProxyCheckPeerExpire Off
     
     # Proxy to remote API server
-    RewriteRule ^api/(.*)? https://airdrive.mobi/api/$1 [P]
+    RewriteRule ^api/(.*)? https://CodeRush.mobi/api/$1 [P]
     
     # Router engine
     RewriteCond %{REQUEST_FILENAME} !-f

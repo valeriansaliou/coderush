@@ -1,7 +1,7 @@
 <?php
 
 /*
- *	AirDrive
+ *	CodeRush
  *	Pod Page
  */
 
@@ -50,7 +50,7 @@ if(!$exists_drive) {
 <head>
 	<meta charset="utf-8" />
 	
-	<title><?php _e("AirDrive"); ?> - <?php if($exists_drive && $drive_offline) printf(T_("Drive Offline (%s)"), htmlspecialchars($drive_name)); else if($exists_drive) printf(T_("Accessing Drive (%s)..."), htmlspecialchars($drive_name)); else _e("Drive Not Found"); ?></title>
+	<title><?php _e("CodeRush"); ?> - <?php if($exists_drive && $drive_offline) printf(T_("Drive Offline (%s)"), htmlspecialchars($drive_name)); else if($exists_drive) printf(T_("Accessing Drive (%s)..."), htmlspecialchars($drive_name)); else _e("Drive Not Found"); ?></title>
   	<link rel="shortcut icon" href="/favicon.ico" />
   	
   	<link rel="stylesheet" href="/static/int/<?php _revision(); ?>/stylesheets/common.css">
