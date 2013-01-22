@@ -5,6 +5,9 @@
  *	Not Found Page
  */
 
+// 404 header
+header('Status: 404 Not Found', true, 404);
+
 // Include translation
 includeTranslation($CONTEXT_LANG, 'main', 'not_found');
 
