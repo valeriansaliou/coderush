@@ -155,6 +155,12 @@ function hasCache($hash) {
 function getStaticFiles($dir, $sub_statics) {
 	// Initialize
 	$result_list = array();
+	
+	// No need to proceed?
+	if(!is_dir($dir))
+		return $result_list;
+	
+	// Regex in use
 	$legacy_regex = '/^([^\.]+)\.legacy\.(js|css)$/';
 	$normal_regex = '/^(.+)\.(js|css)$/';
 	
