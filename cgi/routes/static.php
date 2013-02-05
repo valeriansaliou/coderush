@@ -144,24 +144,52 @@ if($revision && $file && $type) {
 			// We get the file MIME type
 			$mime = $parse_filename['ext'];
 			
-			if($mime == 'png')
-				header('Content-Type: image/png');
-			else if($mime == 'gif')
-				header('Content-Type: image/gif');
-			else if(($mime == 'jpg') || ($mime == 'jpeg'))
-				header('Content-Type: image/jpeg');
-			else if($mime == 'ttf')
-				header('Content-Type: application/x-font-ttf');
-			else if($mime == 'eot')
-				header('Content-Type: application/vnd.ms-fontobject');
-			else if(($mime == 'oga') || ($mime == 'ogg'))
-				header('Content-Type: audio/ogg');
-			else if($mime == 'mp3')
-				header('Content-Type: audio/mpeg');
-			else if($mime == 'm4a')
-				header('Content-Type: audio/mp4a-latm');
-			else
-				header('Content-Type: '.getFileMIME($path));
+			switch($mime) {
+				case 'png':
+					header('Content-Type: image/png');
+					break;
+				
+				case 'gif':
+					header('Content-Type: image/gif');
+					break;
+				
+				case 'jpg':
+				case 'jpeg':
+					header('Content-Type: image/jpeg');
+					break;
+				
+				case 'woff':
+					header('Content-Type: application/x-font-woff');
+					break;
+				
+				case 'ttf':
+					header('Content-Type: application/x-font-ttf');
+					break;
+				
+				case 'svg':
+					header('Content-Type: image/svg+xml');
+					break;
+				
+				case 'eot':
+					header('Content-Type: application/vnd.ms-fontobject');
+					break;
+				
+				case 'oga':
+				case 'ogg':
+					header('Content-Type: audio/ogg');
+					break;
+				
+				case 'mp3':
+					header('Content-Type: audio/mpeg');
+					break;
+				
+				case 'm4a':
+					header('Content-Type: audio/mp4a-latm');
+					break;
+				
+				default:
+					header('Content-Type: '.getFileMIME($path));
+			}
 		}
 		
 		// Read the text files (pack them)
