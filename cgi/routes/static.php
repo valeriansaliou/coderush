@@ -11,9 +11,6 @@ require_once('../cgi/functions/static.php');
 // Cache headers
 if($CONFIG_COMMON['dev']['nocache']) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-	header('Cache-Control: no-store, no-cache, must-revalidate');
-	header('Cache-Control: post-check=0, pre-check=0', false);
-	header('Pragma: no-cache');
 } else {
 	$expires = 31536000;
 	header('Pragma: public');
@@ -225,9 +222,25 @@ if($revision && $file && $type) {
 					foreach($statics_sub as $static_folder => $static_files) {
 						// Check each sub-file
 						if(is_array($static_files)) {
+							// Count the number of static files
+							$static_count = count($static_files);
+							
 							// Append each sub-file
-							foreach($static_files as $static_file) {
-								$looped .= rmBOM(file_get_contents($dir.$static_folder.'/'.$static_file.'.'.$statics_ext))."\n";
+							foreach($static_files as $static_index => $static_file) {
+								// Append file debug header (debug mode only)
+								if($CONFIG_COMMON['dev']['debug']) {
+									$looped .= "/*\n";
+									$looped .= " * ----- ".$static_file.".".$statics_ext." -----\n";
+									$looped .= " */";
+									$looped .= "\n\n";
+								}
+								
+								// Append file content
+								$looped .= rmBOM(file_get_contents($dir.$static_folder.'/'.$static_file.'.'.$statics_ext));
+								
+								// Append file margin (for next file)
+								if($static_index < ($static_count - 1))
+									$looped .= "\n\n\n\n";
 							}
 						}
 					}
