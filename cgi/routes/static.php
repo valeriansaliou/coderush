@@ -228,7 +228,7 @@ if($revision && $file && $type) {
 							// Append each sub-file
 							foreach($static_files as $static_index => $static_file) {
 								// Append file debug header (debug mode only)
-								if($CONFIG_COMMON['dev']['debug']) {
+								if($CONFIG_COMMON['dev']['noprod']) {
 									$looped .= "/*\n";
 									$looped .= " * ----- ".$static_file.".".$statics_ext." -----\n";
 									$looped .= " */";
