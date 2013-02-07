@@ -36,7 +36,7 @@ includeTranslation($CONTEXT_LANG, 'main', 'home');
 <head>
 	<?php include('../cgi/includes/page.head.php'); ?>
 	
-	<title><?php _e("CodeRush"); ?> - <?php _e("Base website"); ?></title>
+	<title><?php _e("CodeRush"); ?> - <?php _e("Time Is Money"); ?></title>
 	
 	<link rel="stylesheet" href="/static/int/<?php _revision(); ?>/stylesheets/home.css">
 	<script type="text/javascript" src="/static/int/<?php _revision(); ?>/javascripts/home.js"></script>
@@ -47,8 +47,12 @@ includeTranslation($CONTEXT_LANG, 'main', 'home');
 		<?php include('../cgi/includes/page.header.php'); ?>
 		
 		<div id="content">
-			<h1><?php _e("Welcome to CodeRush!"); ?></h1>
-			<p><?php _e("Start your website from this awesome code base!"); ?></p>
+			<h1><span class="icon" data-icon="&#57441;"></span><?php _e("Welcome to CodeRush!"); ?></h1>
+			
+			<p>
+				<em><?php _e("Time Is Money."); ?></em>
+				<span><?php _e("Don't loose more time now."); ?></span>
+			</p>
 		</div>
 		
 		<?php include('../cgi/includes/page.footer.php'); ?>

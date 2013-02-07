@@ -1,24 +1,39 @@
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-weight: normal;
-	src: url(/static/int/revision/fonts/ttf/ptsans.ttf) format('truetype');
+	src: url('/static/int/revision/fonts/eot/ptsans.eot');
+	src: url('/static/int/revision/fonts/eot/ptsans.eot?#iefix') format('embedded-opentype'),
+	     url('/static/int/revision/fonts/woff/ptsans.woff') format('woff'),
+	     url('/static/int/revision/fonts/ttf/ptsans.ttf') format('truetype'),
+	     url('/static/int/revision/fonts/svg/ptsans.svg#pt_sansregular') format('svg');
 }
 
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-style: italic;
 	font-weight: normal;
-	src: url(/static/int/revision/fonts/ttf/ptsans_italic.ttf) format('truetype');
+	src: url('/static/int/revision/fonts/eot/ptsans_italic.eot');
+	src: url('/static/int/revision/fonts/eot/ptsans_italic.eot?#iefix') format('embedded-opentype'),
+	     url('/static/int/revision/fonts/woff/ptsans_italic.woff') format('woff'),
+	     url('/static/int/revision/fonts/ttf/ptsans_italic.ttf') format('truetype'),
+	     url('/static/int/revision/fonts/svg/ptsans_italic.svg#pt_sansitalic') format('svg');
 }
 
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-weight: bold;
-	src: url(/static/int/revision/fonts/ttf/ptsans_bold.ttf) format('truetype');
+	src: url('/static/int/revision/fonts/eot/ptsans_bold.eot');
+	src: url('/static/int/revision/fonts/eot/ptsans_bold.eot?#iefix') format('embedded-opentype'),
+	     url('/static/int/revision/fonts/woff/ptsans_bold.woff') format('woff'),
+	     url('/static/int/revision/fonts/ttf/ptsans_bold.ttf') format('truetype'),
+	     url('/static/int/revision/fonts/svg/ptsans_bold.svg#pt_sansbold') format('svg');
 }
 
 @font-face {
-	font-family: Iconic Stroke;
-	font-weight: normal;
-	src: url(/static/int/revision/fonts/ttf/iconicstroke.ttf) format('truetype');
+	font-family: 'Iconic Stroke';
+	src: url('/static/int/revision/fonts/eot/iconic_stroke.eot');
+	src: url('/static/int/revision/fonts/eot/iconic_stroke.eot?#iefix') format('embedded-opentype'),
+	     url('/static/int/revision/fonts/woff/iconic_stroke.woff') format('woff'),
+	     url('/static/int/revision/fonts/ttf/iconic_stroke.ttf') format('truetype'),
+	     url('/static/int/revision/fonts/svg/iconic_stroke.svg#iconic_stroke') format('svg');
 }

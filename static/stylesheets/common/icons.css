@@ -1,5 +1,5 @@
 [data-icon]:before {
-	font-family: Iconic Stroke;
+	font-family: 'Iconic Stroke';
 	content: attr(data-icon);
 	speak: none;
 }
