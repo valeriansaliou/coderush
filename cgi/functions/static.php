@@ -111,21 +111,16 @@ function compressCSS($buffer) {
 // Replaces classical path to get.php paths
 function setPath($string, $type, $lang) {
 	// Globals
-	global $CONFIG_HOSTS;
 	global $CONTEXT_REVISION;
-	
-	// Parse static server
-	$static = $CONFIG_HOSTS['api']['static'];
-	$static = preg_replace('/(\/+)?$/', '', $static);
 	
 	// Replace path to static
 	if($type == 'javascripts') {
 		// Links to JS (must have a lang parameter)
-		$string = preg_replace('/\/(static)\/int\/revision\/(javascripts)\//', $static.'/$1/'.$lang.'/'.$CONTEXT_REVISION.'/$2/', $string);
+		$string = preg_replace('/\/(static)\/int\/revision\/(javascripts)\//', '/$1/'.$lang.'/'.$CONTEXT_REVISION.'/$2/', $string);
 	}
 	
 	// Other "normal" links (no lang parameter)
-	$string = preg_replace('/\/(static)\/(int)\/revision\/((?!javascripts)[^\/]+)+\//', $static.'/$1/$2/'.$CONTEXT_REVISION.'/$3/', $string);
+	$string = preg_replace('/\/(static)\/(int)\/revision\/((?!javascripts)[^\/]+)+\//', '/$1/$2/'.$CONTEXT_REVISION.'/$3/', $string);
 	
 	return $string;
 }
