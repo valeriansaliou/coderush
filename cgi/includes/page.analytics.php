@@ -24,4 +24,4 @@
 			//piwikTracker.enableLinkTracking();
 		} catch(err) {}
 	</script>
-<? } ?>
+<?php } ?>
