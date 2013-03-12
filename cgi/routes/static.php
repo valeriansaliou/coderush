@@ -322,11 +322,13 @@ if($revision && $file && $type) {
 				$http_etag = md5($output_data);
 
 				// File HTTP headers
-				header('ETag: '.$http_etag);
-				header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+				if(!$CONFIG_COMMON['dev']['noprod']) {
+					header('ETag: '.$http_etag);
+					header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+				}
 
 				// Check browser cache
-				if(($http_etag && ($http_etag == $if_none_match)) || ($last_modified && ($last_modified <= $if_modified_since))) {
+				if(!$CONFIG_COMMON['dev']['noprod'] && (($http_etag && ($http_etag == $if_none_match)) || ($last_modified && ($last_modified <= $if_modified_since)))) {
 					// Use browser cache
 					header('Status: 304 Not Modified', true, 304);
 
@@ -345,11 +347,13 @@ if($revision && $file && $type) {
 			$http_last_modified = filemtime($path);
 
 			// File HTTP headers
-			header('ETag: '.$http_etag);
-			header('Last-Modified: '.$http_last_modified.' GMT');
-			
+			if(!$CONFIG_COMMON['dev']['noprod']) {
+				header('ETag: '.$http_etag);
+				header('Last-Modified: '.$http_last_modified.' GMT');
+			}
+
 			// Check browser cache
-			if(($http_etag == $if_none_match) || ($http_last_modified <= $if_modified_since)) {
+			if(!$CONFIG_COMMON['dev']['noprod'] && (($http_etag == $if_none_match) || ($http_last_modified <= $if_modified_since))) {
 				// Use browser cache
 				header('Status: 304 Not Modified', true, 304);
 				
