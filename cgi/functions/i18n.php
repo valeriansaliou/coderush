@@ -101,7 +101,7 @@ function langTranslation() {
 			}
 		}
 
-		if($highest_lang)
+		if($highest_lang && existsTranslation($highest_lang))
 			return $highest_lang;
 	}
 
@@ -321,7 +321,7 @@ function localesTranslation($code) {
 
 // Checks if a translation exists
 function existsTranslation($code) {
-	return $code ? is_dir('../i18n/'.$code) : false;
+	return $code ? is_dir('../i18n/common/'.$code) : false;
 }
 
 // Lists all available translations
@@ -329,7 +329,7 @@ function listTranslation() {
 	$available_lang = array();
 
 	// List translation folder
-	$scan_dir = scandir('../i18n');
+	$scan_dir = scandir('../i18n/common');
 	
 	foreach($scan_dir as $current_lang) {
 		// Check if lang is valid
