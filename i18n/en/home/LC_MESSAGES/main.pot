@@ -7,5 +7,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid ""
+msgid "Time Is Money"
+msgstr ""
+
+msgid "Welcome to CodeRush!"
+msgstr ""
+
+msgid "Time Is Money."
+msgstr ""
+
+msgid "Don't loose more time now."
 msgstr ""

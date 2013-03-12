@@ -62,4 +62,42 @@ function routeRequest() {
 	return $route;
 }
 
+// Stringify the request route
+function stringRequest($lang_inc = true) {
+	global $CONTEXT_ROUTE;
+	
+	// Initiliaze route string
+	$string_route = '';
+	
+	// Generate route string
+	foreach($CONTEXT_ROUTE as $sub_id => $sub_value) {
+		// No more data
+		if(!$sub_value)
+			break;
+		
+		// Do not include lang parameter?
+		if(($sub_id == 0) && localesTranslation($sub_value))
+			continue;
+		
+		$string_route .= '/'.$sub_value;
+	}
+	
+	// Root route?
+	if(!$string_route)
+		$string_route = '/';
+	
+	return $string_route;
+}
+
+// Get a part of a request URL
+function partRequest($id) {
+	global $CONFIG_COMMON, $CONTEXT_ROUTE;
+	
+	// Sub ID
+	$sub_id = ($CONFIG_COMMON['i18n']['url'] && localesTranslation(isset($CONTEXT_ROUTE) ? $CONTEXT_ROUTE[0] : null)) ? ++$id : $id;
+	
+	// Get sub route with that ID
+	return isset($CONTEXT_ROUTE[$sub_id]) ? $CONTEXT_ROUTE[$sub_id] : null;
+}
+
 ?>

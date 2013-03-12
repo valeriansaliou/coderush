@@ -20,6 +20,7 @@ $CURRENT_STATICS = array(
 			// Libs
 			'libs'		=> array(
 				'jquery',
+				'jquery.cookie',
 				'jquery.placeholder',
 				'jquery.timers',
 				'jquery.ui'

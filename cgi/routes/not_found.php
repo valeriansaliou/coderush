@@ -20,7 +20,7 @@ includeTranslation($CONTEXT_LANG, 'main', 'not_found');
 <head>
 	<?php include('../cgi/includes/page.head.php'); ?>
 	
-	<title><?php _e("CodeRush"); ?> - <?php _e("Base website"); ?></title>
+	<title><?php _e("CodeRush"); ?> - <?php _e("Not Found"); ?></title>
 	
 	<link rel="stylesheet" href="<?php _statics(); ?>/int/<?php _revision(); ?>/stylesheets/not_found.css">
 	<script type="text/javascript" src="<?php _statics(); ?>/int/<?php _revision(); ?>/javascripts/not_found.js"></script>

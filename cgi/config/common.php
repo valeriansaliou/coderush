@@ -18,6 +18,13 @@ $CONFIG_COMMON = array(
 		'files'			=> true
 	),
 	
+	// Internationalization
+	'i18n'		=> array(
+		'enabled'		=> true,
+		'cookie'		=> true,
+		'url'			=> true
+	),
+	
 	// Meta information
 	'meta'		=> array(
 		'revision'		=> 1

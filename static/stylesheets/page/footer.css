@@ -1,1 +1,20 @@
 /* FOOTER STYLE HERE */
+
+#footer ul.lang {
+	text-align: center;
+	margin-top: 40px;
+}
+
+#footer ul.lang li {
+	display: inline;
+}
+
+#footer ul.lang li a {
+	color: black;
+	font-size: 0.9em;
+	text-decoration: underline;
+}
+
+#footer ul.lang li a.current {
+	font-weight: bold;
+}

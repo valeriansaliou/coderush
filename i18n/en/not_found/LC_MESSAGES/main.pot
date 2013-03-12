@@ -7,5 +7,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid ""
+msgid "Not Found"
+msgstr ""
+
+msgid "CodeRush could not find this."
+msgstr ""
+
+msgid "Please enter another URL so that I can find the page!"
 msgstr ""

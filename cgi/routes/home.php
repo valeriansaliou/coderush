@@ -12,14 +12,16 @@
 $mobile_detect = new Mobile_Detect();
 
 if($mobile_detect->isMobile() && !(isset($_COOKIE['mobile']) && ($_COOKIE['mobile'] == 'ignore'))) {
-	header('Location: /app', true, 302);
+	header('Status: 302 Found', true, 302);
+	header('Location: /app');
 	
 	exit;
 } */
 
 // Don't allow sub-pages here
-if(!$CONTEXT_ROUTE[0] || isset($CONTEXT_ROUTE[1])) {
-	header('Location: /home', true, 302);
+if(!partRequest(0) || partRequest(1)) {
+	header('Status: 302 Found', true, 302);
+	header('Location: /home');
 	
 	exit;
 }

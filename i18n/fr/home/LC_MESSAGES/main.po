@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+
+msgid "Time Is Money"
+msgstr "Le Temps c'est de l'Argent"
+
+msgid "Welcome to CodeRush!"
+msgstr "Bienvenue sur CodeRush !"
+
+msgid "Time Is Money."
+msgstr "Le Temps c'est de l'Argent."
+
+msgid "Don't loose more time now."
+msgstr "Ne perdez pas plus de temps à présent."
