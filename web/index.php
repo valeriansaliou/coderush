@@ -24,6 +24,9 @@ $CONTEXT_ROUTE 		= routeRequest();
 $CONTEXT_LANG		= 'en';
 $CONTEXT_REVISION 	= strval($CONFIG_COMMON['meta']['revision']);
 
+// Common HTTP headers
+header('X-Powered-By: CodeRush Framework');
+
 // Route request
 if(!$CONTEXT_ROUTE[0])
 	include_once('../cgi/routes/home.php');

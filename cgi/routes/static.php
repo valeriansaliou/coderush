@@ -13,7 +13,6 @@ if($CONFIG_COMMON['dev']['nocache']) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 } else {
 	$expires = 31536000;
-	header('Pragma: public');
 	header('Cache-Control: maxage='.$expires);
 	header('Expires: '.gmdate('D, d M Y H:i:s', (time() + $expires)).' GMT');
 }
@@ -34,6 +33,12 @@ if($revision && $file && $type) {
 	$parse_filename = parseFileName($file);
 	$continue = true;
 	
+	// Read request headers
+	$request_headers = function_exists('getallheaders') ? getallheaders() : array();
+	$if_modified_since = isset($request_headers['If-Modified-Since']) ? trim($request_headers['If-Modified-Since']) : null;
+	$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
+	$if_none_match = isset($request_headers['If-None-Match']) ? trim($request_headers['If-None-Match']) : null;
+
 	// JS and CSS special stuffs
 	if(($type == 'stylesheets') || ($type == 'javascripts')) {
 		// Check filename is '/filename' or '/legacy/filename'
@@ -191,18 +196,23 @@ if($revision && $file && $type) {
 		
 		// Read the text files (pack them)
 		if(($type == 'stylesheets') || ($type == 'javascripts')) {
+			// Storage vars
+			$last_modified = $output_data = null;
+
 			// Any cache file?
 			if(hasCache($cache_lang) && !$CONFIG_COMMON['dev']['nocache']) {
+				$last_modified = filemtime(pathCache($cache_lang));
 				$cache_read = readCache($cache_lang);
 				
 				if($deflate_support || !$CONFIG_COMMON['compress']['files'])
-					echo $cache_read;
+					$output_data = $cache_read;
 				else
-					echo gzinflate($cache_read);
+					$output_data = gzinflate($cache_read);
 			} else {
 				// Read cache reference
 				if(hasCache($cache_hash) && !$CONFIG_COMMON['dev']['nocache']) {
 					// Read the reference
+					$last_modified = filemtime(pathCache($cache_hash));
 					$cache_reference = readCache($cache_hash);
 					
 					// Filter the cache reference
@@ -211,6 +221,9 @@ if($revision && $file && $type) {
 					else
 						$output = $cache_reference;
 				} else {
+					// Last modified date is now
+					$last_modified = time();
+
 					// Initialize the loop
 					$looped = '';
 					
@@ -298,13 +311,56 @@ if($revision && $file && $type) {
 				
 				// Output a well-encoded string
 				if($deflate_support || !$CONFIG_COMMON['compress']['files'])
-					echo $final;
+					$output_data = $final;
 				else
-					echo gzinflate($final);
+					$output_data = gzinflate($final);
+			}
+
+			// Any data to output?
+			if($output_data) {
+				// Process re-usable HTTP headers values
+				$http_etag = md5($output_data);
+
+				// File HTTP headers
+				header('ETag: '.$http_etag);
+				header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+
+				// Check browser cache
+				if(($http_etag && ($http_etag == $if_none_match)) || ($last_modified && ($last_modified <= $if_modified_since))) {
+					// Use browser cache
+					header('Status: 304 Not Modified', true, 304);
+
+					exit;
+				} else {
+					// More file HTTP headers
+					header('Content-Length: '.strlen($output_data));
+
+					// Output data
+					echo $output_data;
+				}
 			}
 		} else {
-			// Simple binary read (no packing needed)
-			readfile($path);
+			// Process re-usable HTTP headers values
+			$http_etag = md5_file($path);
+			$http_last_modified = filemtime($path);
+
+			// File HTTP headers
+			header('ETag: '.$http_etag);
+			header('Last-Modified: '.$http_last_modified.' GMT');
+			
+			// Check browser cache
+			if(($http_etag == $if_none_match) || ($http_last_modified <= $if_modified_since)) {
+				// Use browser cache
+				header('Status: 304 Not Modified', true, 304);
+				
+				exit;
+			} else {
+				// More file HTTP headers
+				header('Content-Length: '.filesize($path));
+
+				// Simple binary read (no packing needed)
+				readfile($path);
+			}
 		}
 		
 		exit;

@@ -67,9 +67,14 @@ function parseStaticURL() {
 	return $result;
 }
 
+// Generates a cache path
+function pathCache($hash) {
+	return '../cache/static/'.$hash.'.cache';
+}
+
 // Reads the cached content
 function readCache($hash) {
-	return file_get_contents('../cache/static/'.$hash.'.cache');
+	return file_get_contents(pathCache($hash));
 }
 
 // Generates a cache file

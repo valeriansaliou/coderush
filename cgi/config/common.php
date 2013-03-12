@@ -9,8 +9,8 @@
 $CONFIG_COMMON = array(
 	// Development
 	'dev' 		=> array(
-		'nocache' 		=> true,
-		'noprod' 		=> true
+		'nocache' 		=> false,
+		'noprod' 		=> false
 	),
 	
 	// Performance
