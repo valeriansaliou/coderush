@@ -113,14 +113,17 @@ function setPath($string, $type, $lang) {
 	// Globals
 	global $CONTEXT_REVISION;
 	
+	// Get static server
+	$statics = statics();
+	
 	// Replace path to static
 	if($type == 'javascripts') {
 		// Links to JS (must have a lang parameter)
-		$string = preg_replace('/\/(static)\/int\/revision\/(javascripts)\//', '/$1/'.$lang.'/'.$CONTEXT_REVISION.'/$2/', $string);
+		$string = preg_replace('/\/(static)\/int\/revision\/(javascripts)\//', $statics.'/'.$lang.'/'.$CONTEXT_REVISION.'/$2/', $string);
 	}
 	
 	// Other "normal" links (no lang parameter)
-	$string = preg_replace('/\/(static)\/(int)\/revision\/((?!javascripts)[^\/]+)+\//', '/$1/$2/'.$CONTEXT_REVISION.'/$3/', $string);
+	$string = preg_replace('/\/(static)\/(int)\/revision\/((?!javascripts)[^\/]+)+\//', $statics.'/$2/'.$CONTEXT_REVISION.'/$3/', $string);
 	
 	return $string;
 }

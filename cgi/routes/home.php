@@ -38,8 +38,8 @@ includeTranslation($CONTEXT_LANG, 'main', 'home');
 	
 	<title><?php _e("CodeRush"); ?> - <?php _e("Time Is Money"); ?></title>
 	
-	<link rel="stylesheet" href="/static/int/<?php _revision(); ?>/stylesheets/home.css">
-	<script type="text/javascript" src="/static/int/<?php _revision(); ?>/javascripts/home.js"></script>
+	<link rel="stylesheet" href="<?php _statics(); ?>/int/<?php _revision(); ?>/stylesheets/home.css">
+	<script type="text/javascript" src="<?php _statics(); ?>/int/<?php _revision(); ?>/javascripts/home.js"></script>
 </head>
 
 <body>

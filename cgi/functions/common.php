@@ -29,4 +29,23 @@ function _revision() {
 	echo revision();
 }
 
+// Return static host
+function statics() {
+	global $CONFIG_HOSTS;
+	
+	// Generate proper path to static server
+	$static = $CONFIG_HOSTS['api']['static'];
+	$static = preg_replace('/(\/+)?$/', '', $static);
+	
+	if(!$static)
+		$static = '/static';
+	
+	return $static;
+}
+
+// Print static host
+function _statics() {
+	echo statics();
+}
+
 ?>

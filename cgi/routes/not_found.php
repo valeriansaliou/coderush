@@ -22,8 +22,8 @@ includeTranslation($CONTEXT_LANG, 'main', 'not_found');
 	
 	<title><?php _e("CodeRush"); ?> - <?php _e("Base website"); ?></title>
 	
-	<link rel="stylesheet" href="/static/int/<?php _revision(); ?>/stylesheets/not_found.css">
-	<script type="text/javascript" src="/static/int/<?php _revision(); ?>/javascripts/not_found.js"></script>
+	<link rel="stylesheet" href="<?php _statics(); ?>/int/<?php _revision(); ?>/stylesheets/not_found.css">
+	<script type="text/javascript" src="<?php _statics(); ?>/int/<?php _revision(); ?>/javascripts/not_found.js"></script>
 </head>
 
 <body>
