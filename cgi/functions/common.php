@@ -48,4 +48,16 @@ function _statics() {
 	echo statics();
 }
 
+// Return link prefix
+function prefix() {
+	global $CONFIG_COMMON, $CONTEXT_LANG;
+
+	return $CONFIG_COMMON['i18n']['url'] ? ('/'.($CONTEXT_LANG ? $CONTEXT_LANG : 'en')) : '';
+}
+
+// Print link prefix
+function _prefix() {
+	echo prefix();
+}
+
 ?>
