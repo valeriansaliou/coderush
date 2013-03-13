@@ -18,7 +18,7 @@ if($CONFIG_COMMON['dev']['nocache']) {
 }
 
 // Parse URL
-$static_url = parseStaticURL();
+$static_url = parseStatic();
 
 $lang = $static_url['lang'];
 $revision = $static_url['hash'];
@@ -30,7 +30,7 @@ if($revision && $file && $type) {
 	// We define some stuffs
 	$dir = '../static/'.$type.'/';
 	$path = $dir.$file;
-	$parse_filename = parseFileName($file);
+	$parse_filename = nameFile($file);
 	$continue = true;
 	
 	// Read request headers
@@ -83,7 +83,7 @@ if($revision && $file && $type) {
 			$CURRENT_STATICS = array();
 		
 		// No need to loop? (already cached)
-		$no_loop = !$CONFIG_COMMON['dev']['nocache'] && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCache($cache_lang);
+		$no_loop = !$CONFIG_COMMON['dev']['nocache'] && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCacheStatic($cache_lang);
 		
 		// Check if all files exist
 		if($continue && !$no_loop) {
@@ -100,7 +100,7 @@ if($revision && $file && $type) {
 					
 					// Replace jockers with dynamically-generated file list
 					if($check_static_files == '*') {
-						$CURRENT_STATICS[$sub_statics][$type][$check_static_folder] = getStaticFiles($dir.$check_static_folder, $sub_statics);
+						$CURRENT_STATICS[$sub_statics][$type][$check_static_folder] = listStatic($dir.$check_static_folder, $sub_statics);
 						
 						continue;
 					}
@@ -190,7 +190,7 @@ if($revision && $file && $type) {
 					break;
 				
 				default:
-					header('Content-Type: '.getFileMIME($path));
+					header('Content-Type: '.mimeFile($path));
 			}
 		}
 		
@@ -200,9 +200,9 @@ if($revision && $file && $type) {
 			$last_modified = $output_data = null;
 
 			// Any cache file?
-			if(hasCache($cache_lang) && !$CONFIG_COMMON['dev']['nocache']) {
-				$last_modified = filemtime(pathCache($cache_lang));
-				$cache_read = readCache($cache_lang);
+			if(hasCacheStatic($cache_lang) && !$CONFIG_COMMON['dev']['nocache']) {
+				$last_modified = filemtime(pathCacheStatic($cache_lang));
+				$cache_read = readCacheStatic($cache_lang);
 				
 				if($deflate_support || !$CONFIG_COMMON['compress']['files'])
 					$output_data = $cache_read;
@@ -210,10 +210,10 @@ if($revision && $file && $type) {
 					$output_data = gzinflate($cache_read);
 			} else {
 				// Read cache reference
-				if(hasCache($cache_hash) && !$CONFIG_COMMON['dev']['nocache']) {
+				if(hasCacheStatic($cache_hash) && !$CONFIG_COMMON['dev']['nocache']) {
 					// Read the reference
-					$last_modified = filemtime(pathCache($cache_hash));
-					$cache_reference = readCache($cache_hash);
+					$last_modified = filemtime(pathCacheStatic($cache_hash));
+					$cache_reference = readCacheStatic($cache_hash);
 					
 					// Filter the cache reference
 					if($CONFIG_COMMON['compress']['files'])
@@ -249,7 +249,7 @@ if($revision && $file && $type) {
 								}
 								
 								// Append file content
-								$looped .= rmBOM(file_get_contents($dir.$static_folder.'/'.$static_file.'.'.$statics_ext));
+								$looped .= rmBOMStatic(file_get_contents($dir.$static_folder.'/'.$static_file.'.'.$statics_ext));
 								
 								// Append file margin (for next file)
 								if($static_index < ($static_count - 1))
@@ -260,13 +260,13 @@ if($revision && $file && $type) {
 					
 					// Filter the CSS
 					if($type == 'stylesheets')
-						$looped = setPath($looped, $type, $lang);
+						$looped = pathStatic($looped, $type, $lang);
 					
 					// Optimize the code rendering
 					if($type == 'stylesheets') {
 						// Can minify the CSS
 						if($CONFIG_COMMON['compress']['files'] && !$CONFIG_COMMON['dev']['nocache'])
-							$output = compressCSS($looped);
+							$output = compressCSSStatic($looped);
 						else
 							$output = $looped;
 					} else {
@@ -287,17 +287,17 @@ if($revision && $file && $type) {
 						$final = $output;
 					
 					// Write it!
-					genCache($final, $CONFIG_COMMON['dev']['nocache'], $cache_hash);
+					genCacheStatic($final, $CONFIG_COMMON['dev']['nocache'], $cache_hash);
 				}
 				
 				// Filter the JS
 				if($type == 'javascripts') {
 					// Set the Get API paths
-					$output = setPath($output, $type, $locale);
+					$output = pathStatic($output, $type, $locale);
 					
 					// Translate the JS script
 					includeTranslation($locale, 'main', 'static');
-					$output = setTranslation($output);
+					$output = translateStatic($output);
 					
 					// Generate the cache
 					if($CONFIG_COMMON['compress']['files'])
@@ -306,7 +306,7 @@ if($revision && $file && $type) {
 						$final = $output;
 					
 					// Write it!
-					genCache($final, $CONFIG_COMMON['dev']['nocache'], $cache_lang);
+					genCacheStatic($final, $CONFIG_COMMON['dev']['nocache'], $cache_lang);
 				}
 				
 				// Output a well-encoded string

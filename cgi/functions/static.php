@@ -6,7 +6,7 @@
  */
 
 // Parses the static URL
-function parseStaticURL() {
+function parseStatic() {
 	// INFO: /static/LANG/REVISION/FILE_TYPE/(FILE_PATH|FILE_GROUP)
 	
 	global $CONTEXT_ROUTE;
@@ -68,17 +68,22 @@ function parseStaticURL() {
 }
 
 // Generates a cache path
-function pathCache($hash) {
+function pathCacheStatic($hash) {
 	return '../cache/static/'.$hash.'.cache';
 }
 
+// The function to check the cache presence
+function hasCacheStatic($hash) {
+	return file_exists('../cache/static/'.$hash.'.cache');
+}
+
 // Reads the cached content
-function readCache($hash) {
-	return file_get_contents(pathCache($hash));
+function readCacheStatic($hash) {
+	return file_get_contents(pathCacheStatic($hash));
 }
 
 // Generates a cache file
-function genCache($string, $mode, $cache) {
+function genCacheStatic($string, $mode, $cache) {
 	if(!$mode) {
 		$cache_dir = '../cache/static';
 		$file_put = $cache_dir.'/'.$cache.'.cache';
@@ -90,7 +95,7 @@ function genCache($string, $mode, $cache) {
 }
 
 // Removes the BOM from a string
-function rmBOM($string) { 
+function rmBOMStatic($string) { 
 	if(substr($string, 0, 3) == pack('CCC', 0xef, 0xbb, 0xbf))
 		$string = substr($string, 3);
 	
@@ -98,7 +103,7 @@ function rmBOM($string) {
 }
 
 // Compress the CSS
-function compressCSS($buffer) {
+function compressCSSStatic($buffer) {
 	// We remove the comments
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
 	
@@ -114,7 +119,7 @@ function compressCSS($buffer) {
 }
 
 // Replaces classical path to get.php paths
-function setPath($string, $type, $lang) {
+function pathStatic($string, $type, $lang) {
 	// Globals
 	global $CONTEXT_REVISION;
 	
@@ -134,28 +139,12 @@ function setPath($string, $type, $lang) {
 }
 
 // Sets the good translation to a JS file
-function setTranslation($string) {
+function translateStatic($string) {
 	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.addslashes(T_gettext(stripslashes('$1'))).'\")'", $string);
 }
 
-// The function to get the static URL
-function staticURL() {
-	// Check for HTTPS
-	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
-	
-	// Full URL
-	$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-	
-	return $url;
-}
-
-// The function to check the cache presence
-function hasCache($hash) {
-	return file_exists('../cache/static/'.$hash.'.cache');
-}
-
 // Get static directory file list
-function getStaticFiles($dir, $sub_statics) {
+function listStatic($dir, $sub_statics) {
 	// Initialize
 	$result_list = array();
 	
@@ -177,7 +166,7 @@ function getStaticFiles($dir, $sub_statics) {
 		// File is okay for our request?
 		if($current_subfile && ($current_subfile != '.') && ($current_subfile != '..') && preg_match($match_regex, $current_subfile) && !preg_match($not_regex, $current_subfile)) {
 			// Remove extension
-			$current_parse = parseFileName($current_subfile);
+			$current_parse = nameFile($current_subfile);
 			$current_name = $current_parse['name'];
 			
 			// Push it
