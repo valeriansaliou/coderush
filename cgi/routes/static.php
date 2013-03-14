@@ -34,10 +34,9 @@ if($revision && $file && $type) {
 	$continue = true;
 	
 	// Read request headers
-	$request_headers = function_exists('getallheaders') ? getallheaders() : array();
-	$if_modified_since = isset($request_headers['If-Modified-Since']) ? trim($request_headers['If-Modified-Since']) : null;
+	$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
 	$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
-	$if_none_match = isset($request_headers['If-None-Match']) ? trim($request_headers['If-None-Match']) : null;
+	$if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : null;
 
 	// JS and CSS special stuffs
 	if(($type == 'stylesheets') || ($type == 'javascripts')) {
