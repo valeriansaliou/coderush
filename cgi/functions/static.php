@@ -74,7 +74,7 @@ function pathCacheStatic($hash) {
 
 // The function to check the cache presence
 function hasCacheStatic($hash) {
-	return file_exists('../cache/static/'.$hash.'.cache');
+	return file_exists(pathCacheStatic($hash));
 }
 
 // Reads the cached content
