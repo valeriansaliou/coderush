@@ -327,7 +327,7 @@ if($revision && $file && $type) {
 				}
 
 				// Check browser cache
-				if(!$CONFIG_COMMON['dev']['noprod'] && (($http_etag && ($http_etag == $if_none_match)) || ($last_modified && ($last_modified <= $if_modified_since)))) {
+				if(!$CONFIG_COMMON['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
 					// Use browser cache
 					header('Status: 304 Not Modified', true, 304);
 
@@ -352,7 +352,7 @@ if($revision && $file && $type) {
 			}
 
 			// Check browser cache
-			if(!$CONFIG_COMMON['dev']['noprod'] && (($http_etag == $if_none_match) || ($http_last_modified <= $if_modified_since))) {
+			if(!$CONFIG_COMMON['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
 				// Use browser cache
 				header('Status: 304 Not Modified', true, 304);
 				
