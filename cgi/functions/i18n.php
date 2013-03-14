@@ -325,8 +325,34 @@ function existsTranslation($code) {
 }
 
 // Lists all available translations
+$LIST_TRANSLATION = null;
+
 function listTranslation() {
+	global $LIST_TRANSLATION, $CONTEXT_LANG;
+
+	// Cache exists?
+	if($LIST_TRANSLATION != null)
+		return $LIST_TRANSLATION;
+
+	// Initialize storage array
 	$available_lang = array();
+	$pushed_langs = array();
+
+	// Push current translation
+	if($CONTEXT_LANG) {
+		$lang_name = localesTranslation($CONTEXT_LANG);
+
+		if($lang_name) {
+			// Push to master array
+			array_push($available_lang, array(
+				'code'	=> $CONTEXT_LANG,
+				'name'	=> $lang_name
+			));
+
+			// Push to marker array
+			array_push($pushed_langs, $CONTEXT_LANG);
+		}
+	}
 
 	// List translation folder
 	$scan_dir = scandir('../i18n/common');
@@ -335,17 +361,21 @@ function listTranslation() {
 		// Check if lang is valid
 		$current_name = localesTranslation($current_lang);
 		
-		if(!$current_name)
+		if(!$current_name || in_array($current_lang, $pushed_langs))
 			continue;
 		
-		// Create lang sub-array
-		$current_arr = array(
+		// Push to master array
+		array_push($available_lang, array(
 			'code'	=> $current_lang,
 			'name'	=> $current_name
-		);
+		));
 
-		array_push($available_lang, $current_arr);
+		// Push to marker array
+		array_push($pushed_langs, $current_lang);
 	}
+
+	// Cache this result (avoids later disk access on multiple calls)
+	$LIST_TRANSLATION = $available_lang;
 
 	return $available_lang;
 }
