@@ -18,6 +18,13 @@ $CONFIG_COMMON = array(
 		'files'			=> true
 	),
 	
+	// Analytics (Piwik)
+	'analytics'	=> array(
+		'enabled'		=> false,
+		'server'		=> 'analytics.frenchtouch.pro',
+		'id'			=> -1
+	),
+	
 	// Internationalization
 	'i18n'		=> array(
 		'enabled'		=> true,

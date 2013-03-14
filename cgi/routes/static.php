@@ -296,7 +296,6 @@ if($revision && $file && $type) {
 					$output = pathStatic($output, $type, $locale);
 					
 					// Translate the JS script
-					includeTranslation($locale, 'main', 'static');
 					$output = translateStatic($output);
 					
 					// Generate the cache

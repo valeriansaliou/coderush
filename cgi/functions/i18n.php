@@ -16,13 +16,13 @@ function _e($string) {
 }
 
 // Includes a translation file
-function includeTranslation($locale, $domain, $route) {
+function includeTranslation($locale, $domain) {
 	global $CONFIG_COMMON;
 	
 	// Translations enabled?
 	if($CONFIG_COMMON['i18n']['enabled']) {
 		T_setlocale(LC_MESSAGES, $locale);
-		T_bindtextdomain($domain, '../i18n/'.$route);
+		T_bindtextdomain($domain, '../i18n');
 		T_bind_textdomain_codeset($domain, 'UTF-8');
 		T_textdomain($domain);
 	}
@@ -321,7 +321,7 @@ function localesTranslation($code) {
 
 // Checks if a translation exists
 function existsTranslation($code) {
-	return $code ? is_dir('../i18n/common/'.$code) : false;
+	return $code ? is_dir('../i18n/'.$code) : false;
 }
 
 // Lists all available translations
@@ -355,7 +355,7 @@ function listTranslation() {
 	}
 
 	// List translation folder
-	$scan_dir = scandir('../i18n/common');
+	$scan_dir = scandir('../i18n');
 	
 	foreach($scan_dir as $current_lang) {
 		// Check if lang is valid

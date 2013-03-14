@@ -10,6 +10,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
 
+msgid "Time Is Money"
+msgstr "Le Temps c'est de l'Argent"
+
+msgid "Welcome to CodeRush!"
+msgstr "Bienvenue sur CodeRush !"
+
+msgid "Time Is Money."
+msgstr "Le Temps c'est de l'Argent."
+
+msgid "Don't loose more time now."
+msgstr "Ne perdez pas plus de temps à présent."
+
 msgid "Not Found"
 msgstr "Non Trouvé"
 

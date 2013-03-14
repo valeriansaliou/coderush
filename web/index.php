@@ -28,8 +28,8 @@ $CONTEXT_REVISION 	= strval($CONFIG_COMMON['meta']['revision']);
 // Common HTTP headers
 header('X-Powered-By: CodeRush Framework');
 
-// Common translation
-includeTranslation($CONTEXT_LANG, 'main', 'common');
+// Translations
+includeTranslation($CONTEXT_LANG, 'main');
 
 // Manage localization
 if($CONFIG_COMMON['i18n']['url'] && ($CONTEXT_LANG != $CONTEXT_ROUTE[0]) && !preg_match('/^'.$CONFIG_FRAMEWORK['filters']['i18n'].'$/', $CONTEXT_ROUTE[0])) {

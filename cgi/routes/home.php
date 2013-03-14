@@ -26,9 +26,6 @@ if(!partRequest(0) || partRequest(1)) {
 	exit;
 }
 
-// Include translation
-includeTranslation($CONTEXT_LANG, 'main', 'home');
-
 ?>
 
 <!DOCTYPE html>

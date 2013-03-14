@@ -1,5 +1,5 @@
 # CodeRush
-# Home Translation
+# Translation
 
 msgid ""
 msgstr ""
@@ -17,4 +17,13 @@ msgid "Time Is Money."
 msgstr ""
 
 msgid "Don't loose more time now."
+msgstr 
+
+msgid "Not Found"
+msgstr ""
+
+msgid "CodeRush could not find this."
+msgstr ""
+
+msgid "Please enter another URL so that I can find the page!"
 msgstr ""
