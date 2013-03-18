@@ -58,3 +58,53 @@ function encodeHTML(string) {
 function isObsolete() {
 	return ($.browser.msie && (parseInt($.browser.version, 10) <= 8));
 }
+
+// Check whether we are in developer mode or not
+function isDeveloper() {
+	return (CONFIG_DEV_NOPROD == '1');
+}
+
+// Logs a message in the developer console
+function logThis(data, level) {
+	// Console not available
+	if(!isDeveloper() || (typeof(console) == 'undefined'))
+		return false;
+	
+	// Try to log the data
+	try {
+		// Switch the log level
+		switch(level) {
+			// Debug
+			case 'd':
+				console.debug(data);
+				
+				break;
+			
+			// Error
+			case 'e':
+				console.error(data);
+				
+				break;
+			
+			// Warning
+			case 'w':
+				console.warn(data);
+				
+				break;
+			
+			// Information
+			case 'i':
+				console.info(data);
+				
+				break;
+			
+			// Default log level
+			default:
+				console.log(data);
+				
+				break;
+		}
+	} finally {
+		return true;
+	}
+}

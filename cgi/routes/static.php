@@ -291,6 +291,9 @@ if($revision && $file && $type) {
 				
 				// Filter the JS
 				if($type == 'javascripts') {
+					// Set the configuration
+					$output = configurationStatic($output);
+					
 					// Set the Get API paths
 					$output = pathStatic($output, $type, $locale);
 					

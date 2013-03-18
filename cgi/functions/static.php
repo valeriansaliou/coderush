@@ -143,6 +143,40 @@ function translateStatic($string) {
 	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.addslashes(T_gettext(stripslashes('$1'))).'\")'", $string);
 }
 
+// Sets the good configuration to JS
+function configurationStatic($string) {
+	// Globals
+	global $CONFIG_COMMON;
+	
+	// Configuration array
+	$array = array(
+		// Configuration strings
+		'string' => array(
+			// Common configuration
+			'CONFIG_DEV_NOPROD'	=> ($CONFIG_COMMON['dev']['noprod'] ? '1' : '0')
+		),
+		
+		// Configuration objects
+		'object' => array(
+			// Object vars here (if any)
+		)
+	);
+	
+	// Apply it!
+	foreach($array as $array_key => $array_value) {
+		// Add quotes to strings
+		if($array_key == 'string') {
+			foreach($array_value as $sub_array_key => $sub_array_value)
+				$string = preg_replace('/var '.$sub_array_key.'((\s+)?=(\s+)?)null;/', 'var '.$sub_array_key.'$1\''.addslashes($sub_array_value).'\';', $string);
+		} else if($array_key == 'object') {
+			foreach($array_value as $sub_array_key => $sub_array_value)
+				$string = preg_replace('/var '.$sub_array_key.'((\s+)?=(\s+)?)null;/', 'var '.$sub_array_key.'$1'.$sub_array_value.';', $string);
+		}
+	}
+	
+	return $string;
+}
+
 // Get static directory file list
 function listStatic($dir, $sub_statics) {
 	// Initialize
