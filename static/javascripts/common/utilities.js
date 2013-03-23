@@ -35,21 +35,18 @@ function genID() {
 	return ++GEN_ID;
 }
 
-// Encodes quotes in a string
-function encodeQuotes(str) {
-	return (str + '').replace(/"/g, '&quot;');
-}
-
 // HTML-encode a string
 function encodeHTML(string) {
 	// No string?
 	if(!string)
 		return string;
-	
+
 	// Replace HTML-specific chars
 	return string.replace(/&/g,"&amp;")
 	             .replace(/</g,"&lt;")
 	             .replace(/>/g,"&gt;")
+	             .replace(/\"/g,"&quot;")
+	             .replace(/\'/g,"&#039;")
 	             .replace(/\"/g,"&quot;")
 	             .replace(/\n/g,"<br />");
 }
