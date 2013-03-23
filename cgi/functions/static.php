@@ -5,7 +5,7 @@
  *	Smart Static File Get Functions
  */
 
-// Parses the static URL
+// Parses static URL
 function parseStatic() {
 	// INFO: /static/LANG/REVISION/FILE_TYPE/(FILE_PATH|FILE_GROUP)
 	
