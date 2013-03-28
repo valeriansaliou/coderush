@@ -19,6 +19,7 @@ $CURRENT_STATICS = array(
 		'javascripts'	=> array(
 			// Libs
 			'libs'		=> array(
+				'browser-detect',
 				'jquery',
 				'jquery.cookie',
 				'jquery.placeholder',

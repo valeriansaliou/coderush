@@ -53,7 +53,7 @@ function encodeHTML(string) {
 
 // Checks if the Web browser is obsolete
 function isObsolete() {
-	return ($.browser.msie && (parseInt($.browser.version, 10) <= 8));
+	return ((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version <= 8));
 }
 
 // Check whether we are in developer mode or not
