@@ -47,7 +47,6 @@ function encodeHTML(string) {
 	             .replace(/>/g,"&gt;")
 	             .replace(/\"/g,"&quot;")
 	             .replace(/\'/g,"&#039;")
-	             .replace(/\"/g,"&quot;")
 	             .replace(/\n/g,"<br />");
 }
 
