@@ -76,7 +76,7 @@ function stringRequest($lang_inc = true) {
 			break;
 		
 		// Do not include lang parameter?
-		if(($sub_id == 0) && localesTranslation($sub_value))
+		if(!$lang_inc &&($sub_id == 0) && localesTranslation($sub_value))
 			continue;
 		
 		$string_route .= '/'.$sub_value;
