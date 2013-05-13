@@ -3,8 +3,8 @@
 /*
  *	CodeRush
  *	Instance Configuration (secured)
- *  
- *  UPDATES ARE EXCLUDED FROM GIT
+ *
+ *	UPDATES ARE EXCLUDED FROM GIT
  */
 
 // Instance configuration container
