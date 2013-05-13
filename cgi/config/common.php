@@ -7,17 +7,6 @@
 
 // Common configuration container
 $CONFIG_COMMON = array(
-	// Development
-	'dev' 		=> array(
-		'nocache' 		=> true,
-		'noprod' 		=> true
-	),
-	
-	// Performance
-	'compress'	=> array(
-		'files'			=> true
-	),
-	
 	// Analytics (Piwik)
 	'analytics'	=> array(
 		'enabled'		=> false,

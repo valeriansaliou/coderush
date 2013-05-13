@@ -7,7 +7,7 @@
 
 ?>
 
-<?php if(!$CONFIG_COMMON['dev']['noprod'] && $CONFIG_COMMON['analytics']['enabled']) { ?>
+<?php if(!$CONFIG_INSTANCE['dev']['noprod'] && $CONFIG_COMMON['analytics']['enabled']) { ?>
 	<script type="text/javascript">
 		var pkBaseURL = (("https:" == document.location.protocol) ? "https://<?php echo $CONFIG_COMMON['analytics']['server']; ?>/" : "http://<?php echo $CONFIG_COMMON['analytics']['server']; ?>/");
 		

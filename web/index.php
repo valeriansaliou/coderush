@@ -6,9 +6,10 @@
  */
 
 // Read configuration
-require_once('../cgi/config/framework.php');
 require_once('../cgi/config/common.php');
+require_once('../cgi/config/framework.php');
 require_once('../cgi/config/hosts.php');
+require_once('../cgi/config/instance.php');
 require_once('../cgi/config/sql.php');
 
 // Required libs

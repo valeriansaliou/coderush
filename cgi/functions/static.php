@@ -146,14 +146,14 @@ function translateStatic($string) {
 // Sets the good configuration to JS
 function configurationStatic($string) {
 	// Globals
-	global $CONFIG_COMMON;
+	global $CONFIG_INSTANCE;
 	
 	// Configuration array
 	$array = array(
 		// Configuration strings
 		'string' => array(
 			// Common configuration
-			'CONFIG_DEV_NOPROD'	=> ($CONFIG_COMMON['dev']['noprod'] ? '1' : '0')
+			'CONFIG_DEV_NOPROD'	=> ($CONFIG_INSTANCE['dev']['noprod'] ? '1' : '0')
 		),
 		
 		// Configuration objects

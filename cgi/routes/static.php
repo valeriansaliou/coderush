@@ -9,7 +9,7 @@
 require_once('../cgi/functions/static.php');
 
 // Cache headers
-if($CONFIG_COMMON['dev']['nocache']) {
+if($CONFIG_INSTANCE['dev']['nocache']) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 } else {
 	$expires = 31536000;
@@ -57,7 +57,7 @@ if($revision && $file && $type) {
 		$file = $parse_filename['name'];
 		
 		// Compression var
-		if($CONFIG_COMMON['compress']['files'])
+		if($CONFIG_INSTANCE['compress']['files'])
 			$cache_encoding = 'deflate';
 		else
 			$cache_encoding = 'plain';
@@ -68,7 +68,7 @@ if($revision && $file && $type) {
 		// Check if the browser supports DEFLATE
 		$deflate_support = false;
 		
-		if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && $CONFIG_COMMON['compress']['files'] && !$CONFIG_COMMON['dev']['nocache'])
+		if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && $CONFIG_INSTANCE['compress']['files'] && !$CONFIG_INSTANCE['dev']['nocache'])
 			$deflate_support = true;
 		
 		// Internationalization
@@ -82,7 +82,7 @@ if($revision && $file && $type) {
 			$CURRENT_STATICS = array();
 		
 		// No need to loop? (already cached)
-		$no_loop = !$CONFIG_COMMON['dev']['nocache'] && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCacheStatic($cache_lang);
+		$no_loop = !$CONFIG_INSTANCE['dev']['nocache'] && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCacheStatic($cache_lang);
 		
 		// Check if all files exist
 		if($continue && !$no_loop) {
@@ -199,23 +199,23 @@ if($revision && $file && $type) {
 			$last_modified = $output_data = null;
 
 			// Any cache file?
-			if(hasCacheStatic($cache_lang) && !$CONFIG_COMMON['dev']['nocache']) {
+			if(hasCacheStatic($cache_lang) && !$CONFIG_INSTANCE['dev']['nocache']) {
 				$last_modified = filemtime(pathCacheStatic($cache_lang));
 				$cache_read = readCacheStatic($cache_lang);
 				
-				if($deflate_support || !$CONFIG_COMMON['compress']['files'])
+				if($deflate_support || !$CONFIG_INSTANCE['compress']['files'])
 					$output_data = $cache_read;
 				else
 					$output_data = gzinflate($cache_read);
 			} else {
 				// Read cache reference
-				if(hasCacheStatic($cache_hash) && !$CONFIG_COMMON['dev']['nocache']) {
+				if(hasCacheStatic($cache_hash) && !$CONFIG_INSTANCE['dev']['nocache']) {
 					// Read the reference
 					$last_modified = filemtime(pathCacheStatic($cache_hash));
 					$cache_reference = readCacheStatic($cache_hash);
 					
 					// Filter the cache reference
-					if($CONFIG_COMMON['compress']['files'])
+					if($CONFIG_INSTANCE['compress']['files'])
 						$output = gzinflate($cache_reference);
 					else
 						$output = $cache_reference;
@@ -240,7 +240,7 @@ if($revision && $file && $type) {
 							// Append each sub-file
 							foreach($static_files as $static_index => $static_file) {
 								// Append file debug header (debug mode only)
-								if($CONFIG_COMMON['dev']['noprod']) {
+								if($CONFIG_INSTANCE['dev']['noprod']) {
 									$looped .= "/*\n";
 									$looped .= " * ----- ".$static_file.".".$statics_ext." -----\n";
 									$looped .= " */";
@@ -264,13 +264,13 @@ if($revision && $file && $type) {
 					// Optimize the code rendering
 					if($type == 'stylesheets') {
 						// Can minify the CSS
-						if($CONFIG_COMMON['compress']['files'] && !$CONFIG_COMMON['dev']['nocache'])
+						if($CONFIG_INSTANCE['compress']['files'] && !$CONFIG_INSTANCE['dev']['nocache'])
 							$output = compressCSSStatic($looped);
 						else
 							$output = $looped;
 					} else {
 						// Can minify the JS (sloooooow!)
-						if($CONFIG_COMMON['compress']['files'] && !$CONFIG_COMMON['dev']['nocache']) {
+						if($CONFIG_INSTANCE['compress']['files'] && !$CONFIG_INSTANCE['dev']['nocache']) {
 							require_once('../cgi/libs/jsmin.php');
 							
 							$output = JSMin::minify($looped);
@@ -280,13 +280,13 @@ if($revision && $file && $type) {
 					}
 					
 					// Generate the reference cache
-					if($CONFIG_COMMON['compress']['files'])
+					if($CONFIG_INSTANCE['compress']['files'])
 						$final = gzdeflate($output, 9);
 					else
 						$final = $output;
 					
 					// Write it!
-					genCacheStatic($final, $CONFIG_COMMON['dev']['nocache'], $cache_hash);
+					genCacheStatic($final, $CONFIG_INSTANCE['dev']['nocache'], $cache_hash);
 				}
 				
 				// Filter the JS
@@ -301,17 +301,17 @@ if($revision && $file && $type) {
 					$output = translateStatic($output);
 					
 					// Generate the cache
-					if($CONFIG_COMMON['compress']['files'])
+					if($CONFIG_INSTANCE['compress']['files'])
 						$final = gzdeflate($output, 9);
 					else
 						$final = $output;
 					
 					// Write it!
-					genCacheStatic($final, $CONFIG_COMMON['dev']['nocache'], $cache_lang);
+					genCacheStatic($final, $CONFIG_INSTANCE['dev']['nocache'], $cache_lang);
 				}
 				
 				// Output a well-encoded string
-				if($deflate_support || !$CONFIG_COMMON['compress']['files'])
+				if($deflate_support || !$CONFIG_INSTANCE['compress']['files'])
 					$output_data = $final;
 				else
 					$output_data = gzinflate($final);
@@ -323,13 +323,13 @@ if($revision && $file && $type) {
 				$http_etag = md5($output_data);
 
 				// File HTTP headers
-				if(!$CONFIG_COMMON['dev']['noprod']) {
+				if(!$CONFIG_INSTANCE['dev']['noprod']) {
 					header('ETag: '.$http_etag);
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
 				}
 
 				// Check browser cache
-				if(!$CONFIG_COMMON['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
+				if(!$CONFIG_INSTANCE['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
 					// Use browser cache
 					header('Status: 304 Not Modified', true, 304);
 
@@ -348,13 +348,13 @@ if($revision && $file && $type) {
 			$http_last_modified = filemtime($path);
 
 			// File HTTP headers
-			if(!$CONFIG_COMMON['dev']['noprod']) {
+			if(!$CONFIG_INSTANCE['dev']['noprod']) {
 				header('ETag: '.$http_etag);
 				header('Last-Modified: '.$http_last_modified.' GMT');
 			}
 
 			// Check browser cache
-			if(!$CONFIG_COMMON['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
+			if(!$CONFIG_INSTANCE['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
 				// Use browser cache
 				header('Status: 304 Not Modified', true, 304);
 				

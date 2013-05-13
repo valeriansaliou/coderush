@@ -40,7 +40,7 @@ if(sourceCRON() == 'cli') {
 	}
 } else {
 	$cron_result_code = '0';
-	$cron_result_message = 'Not Allowed';
+	$cron_result_message = 'Gateway Not Allowed';
 }
 
 ?>
