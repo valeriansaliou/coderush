@@ -350,7 +350,7 @@ if($revision && $file && $type) {
 			// File HTTP headers
 			if(!$CONFIG_INSTANCE['dev']['noprod']) {
 				header('ETag: '.$http_etag);
-				header('Last-Modified: '.$http_last_modified.' GMT');
+				header('Last-Modified: '.gmdate('D, d M Y H:i:s', $http_last_modified).' GMT');
 			}
 
 			// Check browser cache
