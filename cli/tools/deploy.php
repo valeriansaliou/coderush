@@ -9,8 +9,8 @@
 chdir(dirname(__FILE__));
 
 // Include functions
-require('../functions/common.php');
-require('../functions/deploy.php');
+require_once('../functions/common.php');
+require_once('../functions/deploy.php');
 
 // Don't allow non-CLI requests
 if(caller() != 'cli')
