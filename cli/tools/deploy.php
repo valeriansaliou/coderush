@@ -8,9 +8,16 @@
 // Change current working dir
 chdir(dirname(__FILE__));
 
+// Include functions
+require('../functions/common.php');
+require('../functions/deploy.php');
+
+// Don't allow non-CLI requests
+if(caller() != 'cli')
+	exit('Command-line service. Please call me from your shell.');
+
 // Initialize
 $error = 0;
-include('../functions/deploy.php');
 
 // Launch
 print('[deploy] Deploying app...'."\n");

@@ -9,7 +9,12 @@
 chdir(dirname(__FILE__));
 
 // Include functions
-require_once('../functions/cron.php');
+require('../functions/common.php');
+require('../functions/cron.php');
+
+// Don't allow non-CLI requests
+if(caller() != 'cli')
+	exit('Command-line service. Please call me from your shell.');
 
 // Parse URL
 $cron_url = parseURLCRON();
@@ -76,5 +81,7 @@ if(count($cron_count_executed)) {
 }
 
 print('[cron] Done.'."\n");
+
+exit;
 
 ?>
