@@ -9,7 +9,7 @@
 function revisionDeploy() {
 	try {
 		// Read common config file
-		$config_common_path = '../../cgi/config/common.php';
+		$config_common_path = '../../cgi/config/instance.php';
 		$config_common = file_get_contents($config_common_path);
 
 		if(!$config_common)

@@ -24,7 +24,7 @@ require_once('../cgi/functions/database.php');
 // Current context
 $CONTEXT_ROUTE 		= routeRequest();
 $CONTEXT_LANG		= langTranslation();
-$CONTEXT_REVISION 	= strval($CONFIG_COMMON['meta']['revision']);
+$CONTEXT_REVISION 	= strval($CONFIG_INSTANCE['code']['revision']);
 
 // Common HTTP headers
 header('X-Powered-By: CodeRush Framework');

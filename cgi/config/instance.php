@@ -18,6 +18,11 @@ $CONFIG_INSTANCE = array(
 	// Performance
 	'compress'	=> array(
 		'files'			=> true
+	),
+
+	// Code
+	'code'		=> array(
+		'revision'		=> 1
 	)
 );
 

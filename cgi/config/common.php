@@ -19,11 +19,6 @@ $CONFIG_COMMON = array(
 		'enabled'		=> true,
 		'cookie'		=> true,
 		'url'			=> true
-	),
-	
-	// Meta information
-	'meta'		=> array(
-		'revision'		=> 1
 	)
 );
 
