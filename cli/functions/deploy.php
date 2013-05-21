@@ -16,7 +16,7 @@ function revisionDeploy() {
 			return 0;
 
 		// Increment revision
-		$config_common = preg_replace("/(('|\")revision('|\")(\s+)?=>(\s+)?)([0-9]+)/e", '"$1".("$6" + 1)', $config_common);
+		$config_common = preg_replace("/('|\")(revision)('|\")((\s+)?=>(\s+)?)([0-9]+)/e", '"\'$2\'$4".("$7" + 1)', $config_common);
 
 		// Write common config file
 		file_put_contents($config_common_path, $config_common);

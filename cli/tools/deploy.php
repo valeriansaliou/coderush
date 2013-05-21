@@ -14,7 +14,6 @@ include('../functions/deploy.php');
 
 // Launch
 print('[deploy] Deploying app...'."\n");
-print("\n");
 
 // Increment revision number
 $revision_deploy = revisionDeploy();
@@ -25,16 +24,20 @@ if($revision_deploy != 0) {
 
 	if($cache_static_deploy == 0) {
 		$error = 2;
+
+		print("\n");
 		print('[deploy] NOTICE - Could not purge static cache.'."\n");
+		print("\n");
 	}
 } else {
 	$error = 1;
+
+	print("\n");
 	print('[deploy] FATAL - Could not update revision number.'."\n");
+	print("\n");
 }
 
 // Exit
-print("\n");
-
 switch($error) {
 	// Fatal error
 	case 1:
