@@ -9,7 +9,7 @@
 function revisionDeploy() {
 	try {
 		// Read common config file
-		$config_common_path = '';
+		$config_common_path = '../../cgi/config/common.php';
 		$config_common = file_get_contents($config_common_path);
 
 		if(!$config_common)
@@ -31,7 +31,8 @@ function revisionDeploy() {
 function cacheStaticDeploy() {
 	try {
 		// List the caches to remove
-		$cache_list = scandir('../../cache/static');
+		$cache_path = '../../cache/static';
+		$cache_list = scandir($cache_path);
 
 		// Proceed removal
 		foreach($cache_list as $current_key => $current_cache) {
@@ -43,7 +44,7 @@ function cacheStaticDeploy() {
 			}
 
 			// Remove cache file on disk
-			unlink($current_cache);
+			unlink($cache_path.'/'.$current_cache);
 		}
 
 		// Nothing to do?

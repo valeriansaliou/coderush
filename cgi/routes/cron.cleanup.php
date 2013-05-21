@@ -10,7 +10,8 @@ if(sourceCRON() == 'cli') {
 	// Cleanup static caches
 	try {
 		// List the caches to remove
-		$cache_list = scandir('../cache/static');
+		$cache_path = '../cache/static';
+		$cache_list = scandir($cache_path);
 
 		// Proceed removal
 		foreach($cache_list as $current_key => $current_cache) {
@@ -22,7 +23,7 @@ if(sourceCRON() == 'cli') {
 			}
 
 			// Remove cache file on disk
-			unlink($current_cache);
+			unlink($cache_path.'/'.$current_cache);
 		}
 
 		$cache_count = count($cache_list);
