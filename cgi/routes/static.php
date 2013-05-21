@@ -36,7 +36,6 @@ if($revision && $file && $type) {
 	// Read request headers
 	$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
 	$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
-	$if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : null;
 
 	// JS and CSS special stuffs
 	if(($type == 'stylesheets') || ($type == 'javascripts')) {
@@ -319,17 +318,12 @@ if($revision && $file && $type) {
 
 			// Any data to output?
 			if($output_data) {
-				// Process re-usable HTTP headers values
-				$http_etag = md5($output_data);
-
-				// File HTTP headers
-				if(!$CONFIG_INSTANCE['dev']['noprod']) {
-					header('ETag: '.$http_etag);
+				// File HTTP Last-Modified header
+				if(!$CONFIG_INSTANCE['dev']['noprod'])
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
-				}
 
 				// Check browser cache
-				if(!$CONFIG_INSTANCE['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
+				if(!$CONFIG_INSTANCE['dev']['noprod'] && ($if_modified_since && ($last_modified <= $if_modified_since))) {
 					// Use browser cache
 					header('Status: 304 Not Modified', true, 304);
 
@@ -343,18 +337,15 @@ if($revision && $file && $type) {
 				}
 			}
 		} else {
-			// Process re-usable HTTP headers values
-			$http_etag = md5_file($path);
+			// Process re-usable HTTP Last-Modified header value
 			$http_last_modified = filemtime($path);
 
 			// File HTTP headers
-			if(!$CONFIG_INSTANCE['dev']['noprod']) {
-				header('ETag: '.$http_etag);
+			if(!$CONFIG_INSTANCE['dev']['noprod'])
 				header('Last-Modified: '.gmdate('D, d M Y H:i:s', $http_last_modified).' GMT');
-			}
 
 			// Check browser cache
-			if(!$CONFIG_INSTANCE['dev']['noprod'] && (($if_none_match && ($http_etag == $if_none_match)) || ($if_modified_since && ($last_modified <= $if_modified_since)))) {
+			if(!$CONFIG_INSTANCE['dev']['noprod'] && ($if_modified_since && ($last_modified <= $if_modified_since))) {
 				// Use browser cache
 				header('Status: 304 Not Modified', true, 304);
 				
