@@ -159,7 +159,7 @@ if($revision && $file && $type) {
 					break;
 				
 				case 'woff':
-					header('Content-Type: application/x-font-woff');
+					header('Content-Type: application/font-woff');
 					break;
 				
 				case 'ttf':
