@@ -140,7 +140,15 @@ function pathStatic($string, $type, $lang) {
 
 // Sets the good translation to a JS file
 function translateStatic($string) {
-	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.addslashes(T_gettext(stripslashes('$1'))).'\")'", $string);
+	return preg_replace_callback(
+		'/_e\("([^\"\"]+)"\)/',
+
+		function($m) {
+			return '_e("'.addslashes(T_gettext(stripslashes($m[1]))).'")';
+		},
+
+		$string
+	);
 }
 
 // Sets the good configuration to JS
