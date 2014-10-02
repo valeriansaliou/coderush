@@ -10,10 +10,10 @@ $CONFIG_COMMON = array(
 	// Analytics (Piwik)
 	'analytics'	=> array(
 		'enabled'		=> false,
-		'server'		=> 'analytics.frenchtouch.pro',
+		'server'		=> 'analytics.hakuma.holdings',
 		'id'			=> -1
 	),
-	
+
 	// Internationalization
 	'i18n'		=> array(
 		'enabled'		=> true,
